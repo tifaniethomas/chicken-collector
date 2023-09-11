@@ -1,0 +1,25 @@
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+    background-image: url(../images/chicken-bg.svg);
+  }
+
+.nav-wrapper, .page-footer {
+  background-color: #7c0a02;
+}
+
+main {
+    flex: 1 0 auto;
+    color: white;
+  }
+
+.card-content {
+  color: black;
+}
+  
+footer.page-footer {
+    padding-top: 0;
+    text-align: right;
+  }
+  

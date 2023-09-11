@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Chicken List</h1>
+
+{% for chicken in chickens %}
+  <div class="card">
+    <div class="card-content">
+      <span class="card-title">{{ chicken.name }}</span>
+      <p>Breed: {{ chicken.breed }}</p>
+      <p>Description: {{ chicken.description }}</p>
+      {% if chicken.age > 2 %}
+        <p>Age: {{ chicken.age }} months</p>
+      {% else %}
+        <p>Age: Chick</p>
+      {% endif %}
+    </div>
+  </div>
+{% endfor %}
+
+{% endblock %}
