@@ -10,6 +10,20 @@ body {
   background-color: #7c0a02;
 }
 
+.form {
+  background-color: blanchedalmond;
+  margin-bottom: 5vh;
+}
+
+.form > label {
+  color: white;
+}
+
+.form > td {
+  background-color: white;
+  color:black;
+}
+
 main {
     flex: 1 0 auto;
     color: white;

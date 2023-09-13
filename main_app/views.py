@@ -1,4 +1,9 @@
+from typing import Any
 from django.shortcuts import render
+from django.views.generic.list import ListView
+from django.views.generic.detail import DetailView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
+
 from .models import Chicken
 
 
@@ -9,14 +14,25 @@ def home(request):
 def about(request):
     return render(request, 'about.html')
 
-def chickens_index(request):
-    chickens = Chicken.objects.all()
-    return render(request, 'chickens/index.html', {
-        'chickens': chickens
-    })
+# Create your class-based views here.
+class ChickensIndex(ListView):
+    model = Chicken
+    template_name = 'chickens/index.html'
+    context_object_name = 'chickens'
 
-def chickens_detail(request, chicken_id):
-    chicken = Chicken.objects.get(id=chicken_id)
-    return render(request, 'chickens/detail.html', {
-        'chicken': chicken
-    })
+class ChickensDetail(DetailView):
+    model = Chicken
+    template_name = 'chickens/detail.html'
+
+class ChickensCreate(CreateView):
+    model = Chicken
+    fields = '__all__'
+    success_url = '/chickens/{chicken_id}'
+
+class ChickenUpdate(UpdateView):
+  model = Chicken
+  fields = ['breed', 'description', 'age']
+
+class ChickenDelete(DeleteView):
+  model = Chicken
+  success_url = '/chickens'

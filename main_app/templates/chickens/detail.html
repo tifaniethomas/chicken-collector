@@ -3,18 +3,40 @@
 {% block content %}
 
 <h1>Chicken Details</h1>
-
-<div class="card">
-  <div class="card-content">
-    <span class="card-title">{{ chicken.name }}</span>
-    <p>Breed: {{ chicken.breed }}</p>
-    <p>Description: {{ chicken.description }}</p>
-    {% if chicken.age > 0 %}
-      <p>Age: {{ chicken.age }} months</p>
-    {% else %}
-      <p>Age: Chick</p>
-    {% endif %}
+<div class="row">
+  <div class="col s6">
+    <div class="card">
+      <div class="card-content">
+        <span class="card-title">{{ chicken.name }}</span>
+        <p>Breed: {{ chicken.breed }}</p>
+        <p>Description: {{ chicken.description }}</p>
+        {% if chicken.age > 0 %}
+          <p>Age: {{ chicken.age }} months</p>
+        {% else %}
+          <p>Age: Chick</p>
+        {% endif %}
+      </div>
+      <div class="card-action">
+        <a href="{% url 'chickens_update' chicken.id %}">Edit</a>
+        <a href="{% url 'chickens_delete' chicken.id %}">Delete</a>
+      </div>
+    </div>
   </div>
-</div>
+  <div class="col s6">
+    <table class="striped">
+      <thead>
+        <tr><th>Date</th><th>Meal</th></tr>
+      </thead>
+      <tbody>
+        {% for feeding in chicken.feeding_set.all %}
+          <tr>
+            <td>{{feeding.date}}</td>
+            <td>{{feeding.get_meal_display}}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div> 
 
   {% endblock %}
