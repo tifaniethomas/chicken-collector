@@ -33,7 +33,7 @@ def add_feeding(request, chicken_id):
     new_feeding = form.save(commit=False)
     new_feeding.chicken_id = chicken_id
     new_feeding.save()
-  return redirect('detail', pk=chicken_id)
+  return redirect('detail', chicken_id)
 
 def assoc_toy(request, chicken_id, toy_id):
   Chicken.objects.get(id=chicken_id).toys.add(toy_id)
@@ -65,7 +65,7 @@ class ChickensIndex(ListView):
 
 class ChickensCreate(CreateView):
     model = Chicken
-    fields = '__all__'
+    fields = ['name', 'breed', 'description', 'age']
     success_url = '/chickens/{chicken_id}'
 
 class ChickenUpdate(UpdateView):
